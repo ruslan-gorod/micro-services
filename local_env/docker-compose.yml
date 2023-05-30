@@ -1,0 +1,47 @@
+rabbitmq:
+  image: frodenas/rabbitmq
+  ports:
+    - "5672:5672"
+
+zipkin:
+  image: openzipkin/zipkin
+  ports:
+    - "9411:9411"
+
+graphite:
+  image: eminn/grafana-dashboard
+  ports:
+    - "80:80"
+    - "81:81"
+    - "2003:2003"
+    - "2004:2004"
+    - "8125:8125/udp"
+    - "8126:8126"
+
+discovery:
+  build: ../platform-services/discovery/target/docker
+  ports:
+    - "8761:8761"
+
+apigateway:
+  build: ../platform-services/apigateway/target/docker
+  ports:
+    - "8765:8765"
+  links:
+    - discovery
+
+one:
+  build: ../business-services/one/target/docker
+  links:
+    - zipkin
+    - graphite
+    - rabbitmq
+    - discovery
+
+two:
+  build: ../business-services/two/target/docker
+  links:
+    - zipkin
+    - graphite
+    - rabbitmq
+    - discovery

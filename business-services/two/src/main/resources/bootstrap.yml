@@ -1,0 +1,35 @@
+info:
+  app:
+    name: two
+    description: Service Two
+
+server:
+  port: 8080
+
+spring:
+  application:
+    name: two
+  cloud:
+    config:
+      enabled: false
+  zipkin:
+    baseUrl: http://zipkin:9411
+  rabbitmq:
+    host: rabbitmq
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka/
+
+servo:
+  graphite:
+    observerPrefix: two
+    address: graphite:2003
+
+logging:
+  level:
+    ROOT: INFO
+    com.epam.javacc.microservices: DEBUG

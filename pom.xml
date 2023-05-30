@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <name>Java CC Microservices Reference</name>
+
+    <groupId>com.epam.javacc.microservices</groupId>
+    <artifactId>microservices-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>business-services</module>
+        <module>platform-services</module>
+    </modules>
+
+    <properties>
+        <spring-cloud.version>2021.0.7</spring-cloud.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <spring-boot.version>2.7.12</spring-boot.version>
+        <junit.version>4.12</junit.version>
+        <docker-maven-plugin.version>0.4.11</docker-maven-plugin.version>
+        <docker_image_prefix>ma_lab_project</docker_image_prefix>
+
+        <feign-slf4j>8.18.0</feign-slf4j>
+        <feign-core>8.18.0</feign-core>
+
+        <sleuth-zipkin.version>1.0.0.RELEASE</sleuth-zipkin.version>
+        <spring-cloud-starter-spectator.version>1.1.2.RELEASE</spring-cloud-starter-spectator.version>
+        <spring-cloud-starter.version>1.4.7.RELEASE</spring-cloud-starter.version>
+        <servo-graphite.version>0.12.8</servo-graphite.version>
+        <archaius-core.version>0.7.4</archaius-core.version>
+        <commons-logging.version>1.2</commons-logging.version>
+        <servo-graphite.version>0.13.2</servo-graphite.version>
+    </properties>
+
+
+    <profiles>
+        <profile>
+            <id>docker</id>
+            <properties>
+                <discovery-host>discovery</discovery-host>
+                <discovery-port>8761</discovery-port>
+
+                <graphite-host>graphite</graphite-host>
+                <graphite-port>2003</graphite-port>
+
+                <zipkin-host>zipkin</zipkin-host>
+            </properties>
+        </profile>
+    </profiles>
+
+</project>

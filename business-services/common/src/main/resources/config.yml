@@ -1,0 +1,5 @@
+hello:
+  string:
+    property: Hello World
+int:
+  property: 123
